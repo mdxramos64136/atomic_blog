@@ -1,0 +1,22 @@
+=> Analisando o useEffect da mudança do tema claro x escuro:
+  useEffect(
+    function () {
+      document.documentElement.classList.toggle("fake-dark-mode");
+    },
+    [isFakeDark]
+  );
+
+
+- document.documentElement. é a página inteira
+- Por que precisa ser um useEffect?
+Em React, efeitos colaterais (side effects) que alteram o DOM fora do React 
+devem ser feitos em um hook de efeito (useEffect).
+
+Isso garante que a alteração aconteça depois da renderização, quando o React
+já terminou de atualizar a tela.
+
+Se você colocasse essa lógica diretamente em uma função, 
+ela rodaria a cada render, ou ficaria "fora de sincronia" com o ciclo de 
+vida do React.
+
+==========================================================================
