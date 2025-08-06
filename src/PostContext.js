@@ -69,3 +69,5 @@ function usePost() {
 // Agora ao invés de usar const nomeDaProp = useContext(PostContext) em
 // vários componentes, usamos apenas const nomeDaProp = usePort()
 export { PostProvider, usePost };
+
+/** usePosts is our custom hook to read the value out of the PostContext */
