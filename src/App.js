@@ -1,5 +1,5 @@
 /** CONTEXT API EXPLANED */
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, memo, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 // import { PostContext, PostProvider } from "./PostContext";
 import { usePost, PostProvider } from "./PostContext";
@@ -78,14 +78,15 @@ function Results() {
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main() {
+// com isso, Main and it's children won't re-renderer
+const Main = memo(function Main() {
   return (
     <main>
       <FormAddPost />
       <Posts />
     </main>
   );
-}
+});
 
 function Posts() {
   return (

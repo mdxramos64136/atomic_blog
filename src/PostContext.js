@@ -1,7 +1,7 @@
 // Put here everything that is related to the component
 // Also add all the state and its updating logic, minus the useEffect
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 function createRandomPost() {
@@ -38,17 +38,20 @@ function PostProvider({ children }) {
   function handleClearPosts() {
     setPosts([]);
   }
+
+  /** Memoizing the Value object: */
+  const valueMemoObj = useMemo(() => {
+    return {
+      posts: searchedPosts,
+      onAddPost: handleAddPost,
+      onClearPosts: handleClearPosts,
+      searchQuery,
+      setSearchQuery,
+    };
+  }, [searchedPosts, searchQuery]);
+
   return (
-    <PostContext.Provider
-      value={{
-        posts: searchedPosts,
-        onAddPost: handleAddPost,
-        onClearPosts: handleClearPosts,
-        searchQuery,
-        setSearchQuery,
-      }}>
-      {children}
-    </PostContext.Provider>
+    <PostContext.Provider value={valueMemoObj}>{children}</PostContext.Provider>
   );
 }
 

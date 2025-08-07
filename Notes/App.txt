@@ -20,3 +20,12 @@ ela rodaria a cada render, ou ficaria "fora de sincronia" com o ciclo de
 vida do React.
 
 ==========================================================================
+{children} into the component <PostContext.Provider>
+THe children are not all automatically re-rendered. They were already created
+before they were actually passed into the Provider component (inside App):
+      <PostProvider>
+        <Header />
+        <Main />
+        <Archive />
+        <Footer />
+      </PostProvider>
